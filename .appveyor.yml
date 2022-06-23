@@ -1,4 +1,3 @@
-
 image: Ubuntu
 
 stack: jdk 11
@@ -11,7 +10,6 @@ build: off
 
 install:
   - java -jar ./artifacts/app-ibank-build-for-testers.jar &
-  - chmod +x gradlew
 
 build_script:
   - ./gradlew test -Dselenide.headless=true --info
