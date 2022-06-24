@@ -23,14 +23,14 @@ public class MySteps {
     @Пусть("^пользователь залогинен с именем \"([^\"]*)\" и паролем \"([^\"]*)\";$")
     public void loginWithNameAndPassword(String login, String password) {
         // из .properties файла читаем свойство loginUrl
-        val loginUrl = loadProperty("loginUrl");
+        var loginUrl = loadProperty("loginUrl");
         open(loginUrl);
         scenario.setCurrentPage(page(LoginPage.class));
-        val loginPage = (LoginPage) scenario.getCurrentPage().appeared();
-        val authInfo = new DataHelper.AuthInfo(login, password);
+        var loginPage = (LoginPage) scenario.getCurrentPage().appeared();
+        var authInfo = new DataHelper.AuthInfo(login, password);
         scenario.setCurrentPage(loginPage.validLogin(authInfo));
-        val verificationPage = (VerificationPage) scenario.getCurrentPage().appeared();
-        val verificationCode = DataHelper.getVerificationCodeFor(authInfo);
+        var verificationPage = (VerificationPage) scenario.getCurrentPage().appeared();
+        var verificationCode = DataHelper.getVerificationCodeFor(authInfo);
         scenario.setCurrentPage(verificationPage.validVerify(verificationCode));
         scenario.getCurrentPage().appeared();
     }
@@ -38,9 +38,9 @@ public class MySteps {
 
     @Когда("^он переводит \"([^\"]*)\" рублей с карты с номером \"([^\"]*)\" на свою \"([^\"]*)\" карту со страницы перевода средств;$")
     public void transferMoneyFromSecondToFirstCard(String amount, String fromCard, String firstCard) {
-        val dashboardPage = (DashboardPage) scenario.getCurrentPage().appeared();
+        var dashboardPage = (DashboardPage) scenario.getCurrentPage().appeared();
         scenario.setCurrentPage(dashboardPage.depositToFirstCard());
-        val transferPage = (TransferPage) scenario.getCurrentPage().appeared();
+        var transferPage = (TransferPage) scenario.getCurrentPage().appeared();
         scenario.setCurrentPage(transferPage.transferMoney(amount, fromCard));
         scenario.getCurrentPage().appeared();
     }
@@ -48,8 +48,8 @@ public class MySteps {
 
     @Тогда("^баланс его \"([^\"]*)\" карты из списка на главной странице должен стать \"([^\"]*)\" рублей\\.$")
     public void checkBalanceFirstCard(String firstCardNumber, String expectedBalance) {
-        val dashboardPage = (DashboardPage) scenario.getCurrentPage().appeared();
-        val firstCardBalance = dashboardPage.getCardBalance(DataHelper.getFirstCardInfo().getCardNumber());
+        var dashboardPage = (DashboardPage) scenario.getCurrentPage().appeared();
+        var firstCardBalance = dashboardPage.getCardBalance(DataHelper.getFirstCardInfo().getCardNumber());
         Assertions.assertEquals(expectedBalance.replace(" ", ""), String.valueOf(firstCardBalance));
     }
 }
