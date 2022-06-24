@@ -30,7 +30,7 @@ public class MySteps {
         var authInfo = new DataHelper.AuthInfo(login, password);
         scenario.setCurrentPage(loginPage.validLogin(authInfo));
         var verificationPage = (VerificationPage) scenario.getCurrentPage().appeared();
-        var verificationCode = VerificationPage.getVerificationCodeFor(authInfo);
+        var verificationCode = DataHelper.getVerificationCodeFor(authInfo);
         scenario.setCurrentPage(verificationPage.validVerify(verificationCode));
         scenario.getCurrentPage().appeared();
     }
