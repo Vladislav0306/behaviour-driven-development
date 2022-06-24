@@ -4,10 +4,15 @@ buildscript {
             url 'https://dl.bintray.com/alfa-laboratory/maven-releases/'
         }
     }
+    dependencies {
+        classpath 'ru.alfalab.gradle:cucumber-parallel-test-gradle-plugin:0.3.2'
+        classpath 'ru.alfalab.gradle:cucumber-reporting-gradle-plugin:0.1.0'
+        classpath 'ru.alfalab.gradle:cucumber-parallel-test-gradle-plugin:0.3.1'
+        classpath 'nl.javadude.gradle.plugins:license-gradle-plugin:0.10.0'
+    }
 }
 plugins {
     id 'java'
-    id 'io.freefair.lombok' version '5.0.0'
 }
 
 apply plugin: 'ru.alfalab.cucumber-parallel-test'
