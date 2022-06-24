@@ -26,15 +26,6 @@ public class DataHelper extends AkitaPage {
     }
 
     @Value
-    public static class VerificationCode {
-        private String code;
-    }
-
-    public static VerificationCode getVerificationCodeFor(AuthInfo authInfo) {
-        return new VerificationCode("12345");
-    }
-
-    @Value
     public static class CardInfo {
         private String cardNumber;
     }
